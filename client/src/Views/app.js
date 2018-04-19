@@ -3,23 +3,18 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import Organization from './Organization'
 import Search from './Search'
-import Navbar from '../Components/Navbar'
+import { Navbar } from '../Components/Navbar'
 import './app.scss'
+import { Footer } from '../Components/Footer'
 
 export default props =>
 <BrowserRouter>
   <div className="app">
- 
-    <ul>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/organization">Organizations</Link></li>
-      <li><Link to="/search">Search</Link></li>
-    </ul>
-
-    <hr/>
+ <Navbar />
 
     <Route exact path="/" component={Home}/>
     <Route path="/organization" component={Organization}/>
     <Route path="/search" component={Search}/>
+    <Footer />
   </div>
 </BrowserRouter>
