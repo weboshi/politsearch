@@ -24,7 +24,7 @@ export default class navbar extends Component {
       <NavItem eventKey={1} componentClass={Link} to="/">
       Home
       </NavItem>
-      <NavItem eventKey={2} componentClass={Link} to="/">
+      <NavItem eventKey={2} componentClass={Link} to="/about">
       About
       </NavItem>
       <NavItem eventKey={3} componentClass={Link} to="/">
