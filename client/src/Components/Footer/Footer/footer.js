@@ -11,7 +11,9 @@ export default class navbar extends Component {
     render() {
       return (
         <div className='foot'>
-        
+        <div className='footer-copyright'>
+        Copyright © Weboshi Labs 2018
+        </div>
       </div>
   
       )

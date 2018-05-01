@@ -1,20 +1,21 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+import {
+  Search
+} from '../../Components/Search';
+import { 
+  Paper 
+} from '../../Components/Paper';
 import './home-view.scss';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
-import axios from "axios";
-import RaisedButton from 'material-ui/RaisedButton';
 
-export default props =>
-
-<div className='home'>
-  <h1>
-    Welcome to My Local Politician.
-  </h1>
-  <div>
-    Type in your state abbreviation to receive information on your representatives. 
+export default ({ match }) =>
+<div className="main">
+  <div className='welcome'>
+  <h1> Welcome! <br/> Type in your state to get information about your local representatives. </h1>
+  </div>
+  <div className='search'>
+    <div className="searchbar">
+    <Search/>
+    </div>
   </div>
 </div>
-
-var apiUrl = 'http://www.opensecrets.org/api/?method=getLegislators&id='
-

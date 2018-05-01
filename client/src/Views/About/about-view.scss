@@ -1,15 +1,23 @@
+
+
 .about {
     h1 {
-      color: darkblue;
+      color: white;;
       font-size: 30px;
     }
-    background-color: white;
-    color: black;
+    background-color: transparent;
+    color: white;
     width: 70%;
+    height: 70%;
     margin: auto;
     font-size: 20px;
     line-height: 40px;
-    padding-top: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
   }
 
 .p1, .p2 {
@@ -23,12 +31,35 @@
     background-color: white;
    }
 
-h1, .h2-p2 { 
+.h1-p2, .h2-p2 { 
     text-align: center;
+    margin-top: 0px;
+    border-bottom: 1px solid white;
+    font-weight: bold;
+   
+}
+
+.h1-p2 {
+    width:33%;
+    margin: auto;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+.h2-p2 {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
 }
 
 .p2 {
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .p1-body, .p2-body {

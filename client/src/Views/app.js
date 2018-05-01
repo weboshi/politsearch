@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import Organization from './Organization'
-import Search from './Search'
 import About from './About'
 import Contact from'./Contact'
 import { Navbar } from '../Components/Navbar'
@@ -14,10 +13,8 @@ export default props =>
   <div className="app">
  <Navbar />
     <Route exact path="/" component={Home}/>
-    <Route path="/organization" component={Organization}/>
-    <Route path="/search" component={Search}/>
     <Route path="/about" component={About}/>
     <Route path="/contact" component={Contact}/>
-    <Footer />
+  <Footer />
   </div>
 </BrowserRouter>

@@ -1,12 +1,17 @@
 .navbar-default {
     background-color: #448AFF;
     background-image: none;
-   
+    border-radius: 0;
   }
 
 .navbar-default .navbar-brand {
     color: white;
     font-weight: bold;
+    
+  }
+
+  .navbar-default .navbar-brand:focus {
+      color:white;
   }
 
 .navbar-default .navbar-nav>li>a {
@@ -14,9 +19,16 @@
     font-weight: bold;
   }
 
+  .navbar-default .navbar-nav>li>a:focus{
+    color: white;
+}
+
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-nav>li>a:hover {
-    background-color: white;
+    background-color: transparent;
+    border-bottom: 2.2px solid white;
+    color: white;
+    padding-bottom: 5px;
 }
 
 .navbar-default
@@ -26,3 +38,4 @@
 }
 
 .navbar-default { margin : 0 !important; }
+
