@@ -4,6 +4,8 @@ import TextField from 'material-ui/TextField';
 import axios from "axios";
 import RaisedButton from 'material-ui/RaisedButton';
 import './contact-view.scss';
+import { FormExample, NameForm, EmailForm } from '../../Components/FormExample';
+import { Button } from 'react-bootstrap'
 
 export default props =>
 
@@ -22,9 +24,16 @@ export default props =>
     <a href="#" class="fa fa-google"></a>
     </div>
     <div className='message-box'>
-    <MuiThemeProvider>
-    <TextField/>
-    </MuiThemeProvider>
+    <div className='name-div'>
+    <NameForm/>
+    </div>
+    <div className='email-div'>
+     <EmailForm/>
+    </div>
+    <div className='email-div'>
+    <FormExample/>
+    </div>
+    <Button type="submit">Submit</Button>
     </div>
   </div>
 </div>
