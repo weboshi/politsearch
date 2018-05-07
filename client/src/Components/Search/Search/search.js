@@ -8,68 +8,76 @@ import SearchBar from 'material-ui-search-bar';
 import Paper from 'material-ui/Paper';
 
 
+
 export default class searchState extends Component {
   
     constructor(props) {
       super(props);
       this.state = {
-        stateLookup: "",
+        zipCode: "",
+        info: [],
       }
     }
   
   
     onChange = (e) => {
       this.setState({
-          [e.target.name]: e.target.value
+          zipCode: e.target.value
       });
+      console.log(e.target.value)
   }
   
 
+
   
-  getData = (e) => {  
-    axios.get('http://www.opensecrets.org/api/?method=getLegislators&id=' + this.state.stateLookup + '&apikey=797c36dad81726454e4652d7b7702b53', {headers: {"Access-Control-Allow-Origin": "*"},})
-  .then(function(response){
-    console.log(response.firstlast); // ex.: { user: 'Your User'}
-    console.log(response.status); // ex.: 200
-  });  }
+  getData = (e) => {  console.log(this.state.zipCode)
+    axios.get('https://www.googleapis.com/civicinfo/v2/representatives?address=' + this.state.zipCode + '&key=AIzaSyCFuEuxXr4uMgyEjUY-zFOQV54TWcGxygQ')
+  .then(res => {
+    const info = res.data;
+    this.setState({ info: res.data.officials })
+  })
+  }
   
   onSubmit = (e) => {
-    e.preventDefault();
-    if (!this.state.stateLookup) {
-        alert("Fill out a state please");
-    } else {
+   
+  console.log(this.state.zipCode)
           const {
-          stateLookup
-          } = this.state;
+          zipCode
+          } = this.state.zipCode;
           this.getData()
-    }
+    // }
   }
   
   render() {
     return (
-    <MuiThemeProvider>
-      {/* <div>
-    
- 
-      {<h1 style={{float: 'left'}}>Welcome!</h1>}
-      {<h1 style={{float: 'left'}}>Type in your state below to get information about your local representatives.</h1>}
-      </div> */}
+      <MuiThemeProvider>
+      <div className="main">
       <div>
-      
-      <SearchBar
-      onChange={() => console.log('onChange')}
-      onRequestSearch={() => console.log('onRequestSearch')}
+      <TextField
+      onChange={this.onChange}
+      onRequestSearch={this.onSubmit}
+      value={this.state.zipCode}
+     
+      name="zipCode"
       style={{
         margin: '0 auto',
         maxWidth: 500
       }}
-      value={this.state.Lookup}
-      name="stateLookup"
     />
     </div>
-    </MuiThemeProvider>
-    )
-  }
-  }
+    <div>
+                        <RaisedButton onClick={this.onSubmit} label="Submit!" />
+                    </div>
+   
+    <div>
+    <h1>Representatives</h1>
+    <ul>
+      {this.state.info.map(officials => <li key={officials.name}>{officials.name}{officials.party}</li>
+      )}
+    </ul>
+  </div>
+  </div>
+  </MuiThemeProvider>
+    )}
 
-  // export default withRouter(searchState);
+  }
