@@ -41,7 +41,7 @@ export default class searchState extends Component {
   }
   
     getData = (e) => {  console.log(this.state.zipCode)
-      axios.get('https://www.googleapis.com/civicinfo/v2/representatives?address=' + this.state.zipCode + '&key=AIzaSyCFuEuxXr4uMgyEjUY-zFOQV54TWcGxygQ')
+      axios.get('https://www.googleapis.com/civicinfo/v2/representatives?address=' + this.state.zipCode + '&key='')
     .then(res => {
       const info = res.data;
       this.setState({ info: res.data.officials,
