@@ -7,6 +7,7 @@ import Contact from'./Contact'
 import { Navbar } from '../Components/Navbar'
 import './app.scss'
 import { Footer } from '../Components/Footer'
+import { Results } from '../Components/Results'
 
 export default props =>
 <BrowserRouter>
@@ -15,6 +16,7 @@ export default props =>
     <Route exact path="/" component={Home}/>
     <Route path="/about" component={About}/>
     <Route path="/contact" component={Contact}/>
+    <Route path="/results" component={Results}/>
   <Footer />
   </div>
 </BrowserRouter>
