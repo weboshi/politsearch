@@ -9,6 +9,7 @@ import Paper from 'material-ui/Paper';
 import './results.scss'
 import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import { Footer } from '../../Footer'
 
 
 
@@ -43,7 +44,7 @@ export default class resultPage extends Component {
         info: [],
         showCheckboxes: true,
       }
-      console.log(this.props.location.state.info)
+      console.log(this.props.location.state.zipCode)
     }
   
 getDonations = () => {
@@ -62,16 +63,21 @@ getDonations = () => {
       <div className="body">
         <div className="labels">
         <br/>
-        <h1 className='results-header'> Representatives </h1>
+        <div className='results-header'>
+        <h3 className='results-h1'> Representatives for </h3>
+        <div className='results-header-address'>
+        <h3>{this.props.location.state.zipCode}</h3>
+        </div>
+        </div>
           <div className='table-div'> 
           <BootstrapTable bordered={false} striped={true} data={ this.props.location.state.info }>
           <TableHeaderColumn dataField='name' isKey={true} dataAlign="center" >Name</TableHeaderColumn>
           <TableHeaderColumn dataField='office' dataAlign="center" >Office</TableHeaderColumn>
           <TableHeaderColumn dataField='party' dataAlign="center" >Party</TableHeaderColumn>
-          <TableHeaderColumn dataField='channels' dataFormat={dataFormatter} dataAlign="center" >Twitter</TableHeaderColumn>
+          <TableHeaderColumn dataField='Twitter' dataAlign="center" >Twitter</TableHeaderColumn>
           <TableHeaderColumn dataField='donors' dataAlign="center" dataFormat={ activeFormatter }>Donors</TableHeaderColumn>
           
-      </BootstrapTable>
+        </BootstrapTable>
           
          
           {/* <BootstrapTable data={this.props.location.state.officials} keyField='id'>
@@ -81,7 +87,7 @@ getDonations = () => {
       </BootstrapTable> */}
          
           </div>
-       
+          <Footer/>
         </div>
         
       </div>

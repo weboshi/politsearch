@@ -44,12 +44,37 @@ export default class searchState extends Component {
       axios.get('https://www.googleapis.com/civicinfo/v2/representatives?address=' + this.state.zipCode + '&key=AIzaSyCFuEuxXr4uMgyEjUY-zFOQV54TWcGxygQ')
     .then(res => {
       const info = res.data;
-      this.setState({ info: res.data.officials,
-                      offices: res.data.offices
-      })
-    })
+      var offices = res.data.offices
+      var officials = res.data.officials;
+      var i;
+      var n;
+      
+      console.log(Array.isArray(officials))
+        console.log(offices)
+        for (i=0; i < offices.length; i++){ 
+          for (n=0; n < offices[i].officialIndices.length; n++) {
+            
+             officials[offices[i].officialIndices[n]].office = offices[i].name } 
+        }
+        console.log(officials)
+        for (i=0; i < officials.length; i++){ console.log(officials[6].channels)
+          if (officials[i].channels != undefined){
+          for (n=0; n < officials[i].channels.length; n++){
+            
+            officials[i][officials[i].channels[n].type] = officials[i].channels[n].id
+          }
+        }
+        
+        }
+       console.log(officials)
+       this.setState({ info: officials })
+    }).then(
+    console.log(this.officials))
   }
   
+
+
+
   onSubmit = (e) => {
     e.preventDefault();
    
@@ -86,7 +111,7 @@ export default class searchState extends Component {
    {this.state.info.length > 0 &&
    <Redirect to={{
     pathname: '/results',
-    state: { info: this.state.info, offices: this.state.offices } }}/>
+    state: { info: this.state.info, offices: this.state.offices, zipCode: this.state.zipCode } }}/>
    }
    
     {/* <div>

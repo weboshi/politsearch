@@ -17,6 +17,6 @@ export default props =>
     <Route path="/about" component={About}/>
     <Route path="/contact" component={Contact}/>
     <Route path="/results" component={Results}/>
-  <Footer />
+
   </div>
 </BrowserRouter>
