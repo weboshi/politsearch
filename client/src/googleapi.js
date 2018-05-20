@@ -1,2 +1,2 @@
-const googleApi='AIzaSyCFuEuxXr4uMgyEjUY-zFOQV54TWcGxygQ'
+const googleApi=''
 export default googleApi;
