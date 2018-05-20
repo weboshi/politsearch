@@ -10,6 +10,7 @@ import './results.scss'
 import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Footer } from '../../Footer'
+import publicaKey from '../../../publicakey';
 
 
 
@@ -19,9 +20,14 @@ import { Footer } from '../../Footer'
 
 
 class ActiveFormatter extends React.Component {
+  getDonations = () => { console.log()
+   
+    // var name
+    // axios.get('https://api.propublica.org/campaign-finance/v1/2016/candidates/search.json?query=' + name)
+  };
   render() {
     return (
-      <Button bsStyle="success" onClick={this.getDonations}>Check</Button>
+      <Button bsStyle="success" onClick={activeFormatter}>Check</Button>
       // <input type='button' value='Backers' onClick={this.getDonations}/>
     );
   }
@@ -29,11 +35,31 @@ class ActiveFormatter extends React.Component {
 
 function activeFormatter(cell, row) {
   return (
-    <ActiveFormatter active={ cell } />
+    
+    <ActiveFormatter onClick={() => {this._getDonors(row)}}/> 
   );
 }
 
-const dataFormatter = (cell, row) => { if(cell) {return cell[0].id} else {return ""} };
+
+
+function onSelectRow(row, isSelected, e) {
+  if (isSelected) {
+    alert(`You just selected '${row['name']}'`)
+  }
+}
+
+const selectRowProp = {
+  mode: 'none',
+  clickToSelect: true,
+  unselectable: [2],
+  selected: [1],
+  onSelect: onSelectRow,
+}
+
+var config = {
+  headers: {'X-API-Key': publicaKey },
+  mode: 'CORS'
+}
 
 export default class resultPage extends Component {
   
@@ -42,19 +68,28 @@ export default class resultPage extends Component {
       this.state = {
         zipCode: "",
         info: [],
-        showCheckboxes: true,
+        showCheckboxes: false,
       }
       console.log(this.props.location.state.zipCode)
     }
+
+    getDonors(row) {    
+      console.log(row.name);
+    console.log(axios.get('https://api.propublica.org/campaign-finance/v1/2016/candidates/search.json?query=' + row.name, {mode: 'cors', 'Content-Type': 'application/json', headers: {'X-API-Key': publicaKey} }))
+    .then(function(res){})
+    }
+
+    buttonFunction(cell, row) {     
+      return <div>
+               <Button bsStyle="success" 
+                       onClick={() => {this.getDonors(row)}} 
+                       className="bbtn btn-primary btn-sm">
+                         Check
+               </Button>
+             </div> 
+    }
   
-getDonations = () => {
 
-};
-
-
-
-
-    
   render() {
     return (
       
@@ -75,7 +110,7 @@ getDonations = () => {
           <TableHeaderColumn dataField='office' dataAlign="center" >Office</TableHeaderColumn>
           <TableHeaderColumn dataField='party' dataAlign="center" >Party</TableHeaderColumn>
           <TableHeaderColumn dataField='Twitter' dataAlign="center" >Twitter</TableHeaderColumn>
-          <TableHeaderColumn dataField='donors' dataAlign="center" dataFormat={ activeFormatter }>Donors</TableHeaderColumn>
+          <TableHeaderColumn dataField='donors' dataAlign="center" dataFormat={ this.buttonFunction.bind(this) }>Donors</TableHeaderColumn>
           
         </BootstrapTable>
           

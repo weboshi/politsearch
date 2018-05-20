@@ -17,6 +17,7 @@ import {
 } from 'material-ui/Table';
 import Results from '../../Results';
 // import Table from '../../Table';
+import googleApi from '../../../googleapi';
 
 
 
@@ -41,7 +42,7 @@ export default class searchState extends Component {
   }
   
     getData = (e) => {  console.log(this.state.zipCode)
-      axios.get('https://www.googleapis.com/civicinfo/v2/representatives?address=' + this.state.zipCode + '&key='')
+      axios.get('https://www.googleapis.com/civicinfo/v2/representatives?address=' + this.state.zipCode + '&key=' + googleApi)
     .then(res => {
       const info = res.data;
       var offices = res.data.offices
