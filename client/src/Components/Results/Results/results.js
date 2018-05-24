@@ -11,6 +11,9 @@ import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Footer } from '../../Footer'
 import publicaKey from '../../../publicakey';
+import { Convert } from 'xml-js';
+import { parser } from 'xml2json-light';
+
 
 
 
@@ -73,7 +76,7 @@ export default class resultPage extends Component {
       console.log(this.props.location.state.zipCode)
     }
 
-    getDonors(row) {    
+    getDonors2(row) {    
       console.log(row.name);
     console.log(axios.get('https://api.propublica.org/campaign-finance/v1/2016/candidates/search.json?query=' + row.name, {mode: 'cors', 'Content-Type': 'application/json', headers: {'X-API-Key': publicaKey} }))
     .then(function(res){})
@@ -87,6 +90,63 @@ export default class resultPage extends Component {
                          Check
                </Button>
              </div> 
+    }
+    
+    
+
+    getDonors = (row) => { {
+      var fullName = row.name.split(' '),
+      firstName = fullName[0],
+      lastName = fullName[fullName.length - 1];
+      fetch('https://api.propublica.org/campaign-finance/v1/2016/candidates/search.json?query=' + lastName, {
+        method: 'GET',
+        mode: 'CORS',
+        headers: {
+          'X-API-Key': 'Q82EAnyHuygomXxK2mNDfcHkvOQ17EmsBPvOc1eq'
+        }
+      }).then(response => response.json()) 
+        .then(response => {
+        console.log(firstName.toString());
+        console.log(response.results)
+        console.log(response.results[0].candidate.name.indexOf(firstName.toString()))
+        var i;
+        var fecId;
+        var homeState;
+       
+        for (i=0; i < response.results.length; i++) {
+          if (response.results[i].candidate.name.indexOf(firstName.toString().toUpperCase()) !== -1)
+          { 
+          
+         fecId = response.results[i].candidate.id
+         
+          console.log(fecId)
+          }
+        }
+
+        fetch('https://api.propublica.org/campaign-finance/v1/2018/candidates/' + fecId + '.json', {
+          method: 'GET',
+          mode: 'CORS',
+          headers: {
+            'X-API-Key': 'Q82EAnyHuygomXxK2mNDfcHkvOQ17EmsBPvOc1eq'
+          }
+        }).then(res => res.json())
+        .then(res => {homeState = res.results[0].mailing_state;
+           
+           console.log(homeState)
+           var convert = require('xml-js');
+           var crpData;
+           var data;
+           var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+           targetUrl = 'http://www.opensecrets.org/api/?method=getLegislators&id=' + homeState + '&apikey=' + '797c36dad81726454e4652d7b7702b53'
+           fetch(proxyUrl + targetUrl, {mode: 'CORS'}).then(response => console.log(response))
+          }
+          )
+       
+
+      })
+  
+      
+    }
     }
   
 
