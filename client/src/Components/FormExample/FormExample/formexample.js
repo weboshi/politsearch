@@ -28,8 +28,8 @@ export default class FormExample extends Component {
       return (
         <form>
           <FormGroup controlId="formControlsTextarea">
-          <ControlLabel>Message</ControlLabel>
-          <FormControl componentClass="textarea" placeholder="enter a message" />
+          <ControlLabel style={{fontWeight:'normal'}}>Message</ControlLabel>
+          <FormControl componentClass="textarea" placeholder="Enter a message" />
           </FormGroup>
         </form>
       );

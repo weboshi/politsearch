@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
 import SearchBar from 'material-ui-search-bar';
-import { InputGroup, Navbar, Nav, NavItem, FormGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, FormGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './navbar.scss';
 
@@ -13,9 +13,9 @@ export default class navbar extends Component {
 
   render() {
     return (
-<Navbar default id='all-navbar-default'>
+<Navbar default id='home-navbar-default'>
 <Navbar.Header>
-    <Navbar.Brand pullLeft>
+<Navbar.Brand pullLeft>
     <Link href ='/' to="/">PolitSearch</Link>
     </Navbar.Brand>
   </Navbar.Header>
@@ -30,19 +30,7 @@ export default class navbar extends Component {
       Contact
       </NavItem>
       </Nav>
-  <Navbar.Form margin={'auto'}>
-      <FormGroup className='navbar-form-group' style={{width:'50%', marginLeft:'20%'}}>
-        <InputGroup style={{width:'100%'}}>
-        <FormControl type="text" placeholder="Enter address" bsSize='medium' style={{width:'100%'}} />
-      <InputGroup.Button>
-      <InputGroup.Button >
-          <Button bsSize='medium' style={{width:'100%'}} onClick={this.onSubmit} type="submit"><Glyphicon glyph="search" /></Button>
-        </InputGroup.Button>
-      </InputGroup.Button>
-      </InputGroup>
-      </FormGroup>
-     
-    </Navbar.Form>
+ 
   
 </Navbar>
 

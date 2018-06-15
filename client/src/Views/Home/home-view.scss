@@ -5,6 +5,8 @@ html {
 
 body {
   height: 100%;
+  font-family: 'Patua One', cursive;
+  color: white;
 }
 
 #root {
@@ -16,41 +18,35 @@ body {
   background-image: url('./mlptest.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
 
 .main {
-  h1{
-    color: white;
-    font-weight: bold;
-    line-height: 50px;
-  }
-  
+  text-align: center;
   width: 100%;
-
   vertical-align: middle;
   overflow: hidden;
-
-}
-  
-
-.search {
-  transform: translate(-50%,-50%);
-  position: absolute;
-  top: 50%; left: 50%;
-  
 }
 
-.searchbar {
+.homemessage{
+  color: white;
   margin: auto;
-  width: 300px;
+  margin-top: 200px;
+  line-height: 50px;
+  font-family: 'Patua One';
+  font-size: 32px;
+  width: 70%;
+  
+}
+  
+.searchbar{
+  margin: auto;
+  margin-top: 40px;
+  width: 50%
+
 }
 
-.welcome {
-  width: 35%;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 45%;
-  left: 20%;
-  line-height: 50px;
-}
+
+
+
 

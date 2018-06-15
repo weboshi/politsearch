@@ -5,9 +5,13 @@ import axios from "axios";
 import RaisedButton from 'material-ui/RaisedButton';
 import { Breadcrumb } from 'react-bootstrap';
 import './about-view.scss';
+import { 
+  Navbar2 
+} from '../../Components/Navbar2';
 
 export default props =>
-
+<div>
+  <Navbar2/>
 <div className='container'>
 {/* <div className='breadcrumb'>
 <Breadcrumb bsStyle='default' style={{padding:'0', margin:'0'}}>
@@ -33,13 +37,13 @@ export default props =>
    Where Does the Information Come From?
   </h1>
   <div className='p2-body'>
-    Our information on financial contributions is pulled from Open Secrets at the Center for Responsive Politics, which gathers governmentally mandated public information regarding financial disclosures.
-   Representatives' voting records are pulled from the same database, which is also publically available information. You can visit them below:
+    Our information on financial contributions is pulled from Google Civic Api, ProPublica, and Open Secrets at the Center for Responsive Politics. You can visit them below:
    </div>
    <div className='opensecrets'>
    <a href={'https://www.opensecrets.org/'}><img src={require('./opensecrets_databy250x88.gif')} alt={'OpenSecrets.org'} href={'https://www.opensecrets.org/'} /></a>
    </div>
   </div>
+</div>
 </div>
 </div>
 

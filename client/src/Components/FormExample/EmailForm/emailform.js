@@ -31,7 +31,7 @@ export default class EmailForm extends Component {
             controlId="formBasicText"
             validationState={this.getValidationState()}
           >
-            <ControlLabel>Email</ControlLabel>
+            <ControlLabel style={{fontWeight:'normal'}}>Email</ControlLabel>
             <FormControl
               type="text"
               value={this.state.value}

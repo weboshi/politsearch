@@ -9,10 +9,10 @@ import './app.scss'
 import { Footer } from '../Components/Footer'
 import { Results } from '../Components/Results'
 
+
 export default props =>
 <BrowserRouter>
   <div className="app">
- <Navbar />
     <Route exact path="/" component={Home}/>
     <Route path="/about" component={About}/>
     <Route path="/contact" component={Contact}/>

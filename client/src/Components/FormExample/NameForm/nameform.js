@@ -31,7 +31,7 @@ export default class NameForm extends Component {
             controlId="formBasicText"
             validationState={this.getValidationState()}
           >
-            <ControlLabel>Name</ControlLabel>
+            <ControlLabel style={{fontWeight:'normal'}}>Name</ControlLabel>
             <FormControl
               type="text"
               value={this.state.value}

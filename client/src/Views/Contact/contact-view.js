@@ -6,9 +6,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './contact-view.scss';
 import { FormExample, NameForm, EmailForm } from '../../Components/FormExample';
 import { Button } from 'react-bootstrap'
+import { 
+  Navbar2 
+} from '../../Components/Navbar2';
 
 export default props =>
-
+<div>
+  <Navbar2/>
 <div className='contact'>
   <div className='p1'>
   <h1 className='h1-contact'>
@@ -36,4 +40,5 @@ export default props =>
     <Button type="submit">Submit</Button>
     </div>
   </div>
+</div>
 </div>

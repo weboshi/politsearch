@@ -6,6 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { withRouter, Redirect } from 'react-router-dom';
 import SearchBar from 'material-ui-search-bar';
 import Paper from 'material-ui/Paper';
+import { DropdownButton, MenuItem, InputGroup, Form, FormGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
+
 import './search.scss'
 import {
   Table,
@@ -49,13 +51,17 @@ export default class searchState extends Component {
       var officials = res.data.officials;
       var i;
       var n;
+      const officialState = [];
+      const officialFed = [];
+      const officialLocal = [];
       
       console.log(Array.isArray(officials))
         console.log(offices)
         for (i=0; i < offices.length; i++){ 
           for (n=0; n < offices[i].officialIndices.length; n++) {
             
-             officials[offices[i].officialIndices[n]].office = offices[i].name } 
+             officials[offices[i].officialIndices[n]].office = offices[i].name
+             officials[offices[i].officialIndices[n]].divisionId = offices[i].divisionId } 
         }
         console.log(officials)
         for (i=0; i < officials.length; i++){ console.log(officials[6].channels)
@@ -67,8 +73,44 @@ export default class searchState extends Component {
         }
         
         }
-       console.log(officials)
-       this.setState({ info: officials })
+       for (i=0; i< officials.length; i++){
+         if (officials[i].divisionId.indexOf('state') != -1 && officials[i].divisionId.indexOf('country') !=-1 && officials[i].divisionId.indexOf('county') == -1   ){
+         officialState.push(officials[i])
+         }
+         else if (officials[i].divisionId.indexOf('county') != -1 && officials[i].divisionId.indexOf('state') !=-1 && officials[i].divisionId.indexOf('country') !=-1 )
+         {
+           officialLocal.push(officials[i])
+           
+
+         }
+         else if (officials[i].divisionId.indexOf('country') != -1 ){
+           officialFed.push(officials[i])
+         }
+          }
+          console.log(officialState)
+          console.log(officialFed)
+          
+        for (i=0; i < 2; i++){
+
+         var temp = officialState.splice([0], 1)
+         
+         
+
+        officialFed[i+2] = temp[0]
+
+        }
+
+        
+
+        console.log(officialState)
+        console.log(officialLocal)
+      console.log(officialFed)
+       console.log(info)
+       this.setState({ info: officials,
+                       state: officialState,
+                       local: officialLocal,
+                       federal: officialFed
+                     })
     }).then(
     console.log(this.officials))
   }
@@ -89,30 +131,29 @@ export default class searchState extends Component {
   
   render() {
     return (
-      <MuiThemeProvider>
-      <div className="main">
-      <div>
-      <TextField
-      onChange={this.onChange}
-      onRequestSearch={this.onSubmit}
-      value={this.state.zipCode}
-      name="zipCode"
-      style={{
-        margin: '0 auto',
-        maxWidth: 500,
-        background: 'white',
-      }}
-    />
-    </div>
-    <br/>
-    <div>
-      <RaisedButton onClick={this.onSubmit} label="Submit!" />
-    </div>
+     
+      <div className="main" >
+      <div >
+      <form inline id='form-inline-search'>
+      <FormGroup>
+      <InputGroup style={{width:'100%', margin:'auto'}}>
+      <FormControl bsSize='large' name="zipCode" onChange={this.onChange} value={this.state.zipCode} type="text" placeholder="Enter address" type="text" placeholder='Enter address here!' />
+        <InputGroup.Button >
+          <Button bsSize='large' onClick={this.onSubmit} type="submit">Search</Button>
+        </InputGroup.Button>
+      </InputGroup>
+      </FormGroup>
+      </form>
+      </div>
+      <br/>
+  
    
    {this.state.info.length > 0 &&
+   
    <Redirect to={{
+     
     pathname: '/results',
-    state: { info: this.state.info, offices: this.state.offices, zipCode: this.state.zipCode } }}/>
+    state: { info: this.state.info, officialFed: this.state.federal, officialState: this.state.state, officialLocal: this.state.local, offices: this.state.offices, zipCode: this.state.zipCode } }}/>
    }
    
     {/* <div>
@@ -139,10 +180,10 @@ export default class searchState extends Component {
       </TableBody>
       </Table>
     </div> */}
-  }
+  
   </div>
   
-  </MuiThemeProvider>
+ 
     )}
 
   }

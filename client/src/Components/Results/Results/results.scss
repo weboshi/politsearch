@@ -1,18 +1,28 @@
 .body {
     height: 100%;
-    background: white;
+    background: #F5F5F5;
+    font-family: 'Patua One', cursive;
+}
+
+.checkbox {
+    width: 80%;
+    margin: auto;
 }
 
 .table-div {
     color: black;
-    width: 80%;
+    width: 90%;
     margin: auto;
+    margin-bottom: 50px;
+    font-size: 15px;
+    font-family: 'Roboto'
 }
 
 .results-header {
     color: black;
     margin: auto;
     width: 500px;
+    margin-top: 30px;
     margin-bottom: 50px;
     font-size: 50px;
     text-align:center
@@ -40,4 +50,7 @@
 }
 h3 {
     font-size: 30px;
+}
+hr {
+    border-color: #D3D3D3
 }
