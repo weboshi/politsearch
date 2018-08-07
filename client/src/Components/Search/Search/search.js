@@ -119,6 +119,7 @@ export default class searchState extends Component {
 
 
   onSubmit = (e) => {
+    console.log('hi')
     e.preventDefault();
    
   console.log(this.state.zipCode)
